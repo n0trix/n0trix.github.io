@@ -9,6 +9,16 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>About</title>
+      <link>https://n0trix.github.io/about/</link>
+      <pubDate>Tue, 01 Dec 2020 07:48:50 +0800</pubDate>
+      
+      <guid>https://n0trix.github.io/about/</guid>
+      <description>&lt;h4 id=&#34;about-page&#34;&gt;about page&lt;/h4&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Posts</title>
       <link>https://n0trix.github.io/posts/</link>
       <pubDate>Tue, 01 Dec 2020 07:04:09 +0800</pubDate>

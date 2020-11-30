@@ -2,7 +2,9 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
     <url>
-      <loc>http://example.org/categories/</loc>
+      <loc>https://n0trix.github.io/categories/</loc>
+      
+      <lastmod>2020-12-01T07:04:09+08:00</lastmod>
       
       
       
@@ -10,7 +12,9 @@
     </url>
   
     <url>
-      <loc>http://example.org/</loc>
+      <loc>https://n0trix.github.io/posts/chunkoverlap_poc/</loc>
+      
+      <lastmod>2020-12-01T07:04:09+08:00</lastmod>
       
       
       
@@ -18,7 +22,49 @@
     </url>
   
     <url>
-      <loc>http://example.org/tags/</loc>
+      <loc>https://n0trix.github.io/tags/heap/</loc>
+      
+      <lastmod>2020-12-01T07:04:09+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://n0trix.github.io/</loc>
+      
+      <lastmod>2020-12-01T07:04:09+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://n0trix.github.io/categories/poc/</loc>
+      
+      <lastmod>2020-12-01T07:04:09+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://n0trix.github.io/posts/</loc>
+      
+      <lastmod>2020-12-01T07:04:09+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://n0trix.github.io/tags/</loc>
+      
+      <lastmod>2020-12-01T07:04:09+08:00</lastmod>
       
       
       

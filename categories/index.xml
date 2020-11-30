@@ -2,9 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on NOTRIX&#39;S BLOG</title>
-    <link>http://example.org/categories/</link>
+    <link>https://n0trix.github.io/categories/</link>
     <description>Recent content in Categories on NOTRIX&#39;S BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://example.org/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Dec 2020 07:04:09 +0800</lastBuildDate><atom:link href="https://n0trix.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>poc</title>
+      <link>https://n0trix.github.io/categories/poc/</link>
+      <pubDate>Tue, 01 Dec 2020 07:04:09 +0800</pubDate>
+      
+      <guid>https://n0trix.github.io/categories/poc/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

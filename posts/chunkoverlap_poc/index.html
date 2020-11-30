@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  
+  
+  
+  
+  
+  
+  <link rel="canonical" href="https://n0trix.github.io/posts/chunkoverlap_poc/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           Chunkoverlap_poc | NOTRIX&#39;S BLOG
+       
+  </title>
+  <meta name="title" content="Chunkoverlap_poc | NOTRIX&#39;S BLOG">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/n0trix.github.io\/"
+    },
+    "articleSection" : "posts",
+    "name" : "Chunkoverlap_poc",
+    "headline" : "Chunkoverlap_poc",
+    "description" : "chunk overlap poc overlap1\n#include \u0026lt;stdio.h\u0026gt;#include \u0026lt;stdlib.h\u0026gt;#include \u0026lt;unistd.h\u0026gt;#include \u0026lt;stdint.h\u0026gt; \/\/chunk overlap int main() { setbuf(stdout,0); setbuf(stdin,0); intptr_t *p,*q,*r; malloc(0); p = malloc(0x88); q = malloc(0x88); malloc(0); free(p); sleep(0); *(p-1) = 0x121; r = malloc(0x110); sleep(0x100); return 0; } overlap2\n#include \u0026lt;stdio.h\u0026gt;#include \u0026lt;stdlib.h\u0026gt;#include \u0026lt;malloc.h\u0026gt;#include \u0026lt;stdint.h\u0026gt;#include \u0026lt;string.h\u0026gt; int main() { setbuf(stdin,0); setbuf(stdout,0); intptr_t *a,*b,*c,*d,*e; a = malloc(0); b = malloc(0x80); c = malloc(0x80); d = malloc(0x80); e = malloc(0x10);\/\/gap to top  \/\/assume off by one in a  free(d); \/\/write b\u0026#39;s SIZE  *(a\u002b3) = 0x121; \/\/after free b, trigger forward consolidate  \/\/b,c,d is merged into unsorted bin  \/\/but c is in use  free(b); \/\/now if malloc 0x1a0, glibc will return a big chunk  \/\/contain b,c,d  intptr_t *big = malloc(0x1a0); puts(\u0026#34;overlapped.",
+    "inLanguage" : "en-us",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-12-01 07:04:09 \u002b0800 CST",
+    "dateModified" : "2020-12-01 07:04:09 \u002b0800 CST",
+    "url" : "https:\/\/n0trix.github.io\/posts\/chunkoverlap_poc\/",
+    "wordCount" : "128",
+    "keywords" : [ "heap", "NOTRIX\u0027S BLOG"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://n0trix.github.io/">NOTRIX&#39;S BLOG</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://n0trix.github.io/">NOTRIX&#39;S BLOG</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Chunkoverlap_poc</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://n0trix.github.io/" rel="author"></a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-12-01 itemprop="datePublished">December 1, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://n0trix.github.io/categories/poc/"> poc </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <h2 id="chunk-overlap-poc">chunk overlap poc</h2>
+<p>overlap1</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;unistd.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdint.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">//chunk overlap
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+
+        setbuf(stdout,<span style="color:#ae81ff">0</span>);
+        setbuf(stdin,<span style="color:#ae81ff">0</span>);
+
+        intptr_t <span style="color:#f92672">*</span>p,<span style="color:#f92672">*</span>q,<span style="color:#f92672">*</span>r;
+
+        malloc(<span style="color:#ae81ff">0</span>);
+        p <span style="color:#f92672">=</span> malloc(<span style="color:#ae81ff">0x88</span>);
+        q <span style="color:#f92672">=</span> malloc(<span style="color:#ae81ff">0x88</span>);
+        malloc(<span style="color:#ae81ff">0</span>);
+
+        free(p);
+        sleep(<span style="color:#ae81ff">0</span>);
+
+        <span style="color:#f92672">*</span>(p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)  <span style="color:#f92672">=</span>  <span style="color:#ae81ff">0x121</span>;
+
+        r <span style="color:#f92672">=</span> malloc(<span style="color:#ae81ff">0x110</span>);
+
+        sleep(<span style="color:#ae81ff">0x100</span>);
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+
+}
+</code></pre></div><p>overlap2</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;malloc.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdint.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+        setbuf(stdin,<span style="color:#ae81ff">0</span>);
+        setbuf(stdout,<span style="color:#ae81ff">0</span>);
+
+        intptr_t <span style="color:#f92672">*</span>a,<span style="color:#f92672">*</span>b,<span style="color:#f92672">*</span>c,<span style="color:#f92672">*</span>d,<span style="color:#f92672">*</span>e;
+
+        a <span style="color:#f92672">=</span> malloc(<span style="color:#ae81ff">0</span>);
+        b <span style="color:#f92672">=</span> malloc(<span style="color:#ae81ff">0x80</span>);
+        c <span style="color:#f92672">=</span> malloc(<span style="color:#ae81ff">0x80</span>);
+        d <span style="color:#f92672">=</span> malloc(<span style="color:#ae81ff">0x80</span>);
+        e <span style="color:#f92672">=</span> malloc(<span style="color:#ae81ff">0x10</span>);<span style="color:#75715e">//gap to top
+</span><span style="color:#75715e"></span>
+        <span style="color:#75715e">//assume off by one in a
+</span><span style="color:#75715e"></span>
+        free(d);
+
+        <span style="color:#75715e">//write b&#39;s SIZE
+</span><span style="color:#75715e"></span>        <span style="color:#f92672">*</span>(a<span style="color:#f92672">+</span><span style="color:#ae81ff">3</span>) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x121</span>;
+
+        <span style="color:#75715e">//after free b, trigger forward consolidate
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//b,c,d is merged into unsorted bin
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//but c is in use
+</span><span style="color:#75715e"></span>        free(b);
+
+        <span style="color:#75715e">//now  if malloc 0x1a0, glibc will return a big chunk
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//contain b,c,d
+</span><span style="color:#75715e"></span>        intptr_t <span style="color:#f92672">*</span>big <span style="color:#f92672">=</span> malloc(<span style="color:#ae81ff">0x1a0</span>);
+
+        puts(<span style="color:#e6db74">&#34;overlapped.&#34;</span>);
+
+        <span style="color:#75715e">//now write content in big chunk
+</span><span style="color:#75715e"></span>        memset(big,<span style="color:#e6db74">&#39;A&#39;</span>,<span style="color:#ae81ff">0x1a0</span>);
+        sleep(<span style="color:#ae81ff">0x100</span>);
+
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div>
+    </div>
+
+    <div class="post-copyright">
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://n0trix.github.io/posts/chunkoverlap_poc/>https://n0trix.github.io/posts/chunkoverlap_poc/</span>
+            </p>
+            
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="https://n0trix.github.io/tags/heap/">
+                    #heap</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://n0trix.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

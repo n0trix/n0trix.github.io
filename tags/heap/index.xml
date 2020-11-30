@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>heap on NOTRIX&#39;S BLOG</title>
+    <link>https://n0trix.github.io/tags/heap/</link>
+    <description>Recent content in heap on NOTRIX&#39;S BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Dec 2020 07:04:09 +0800</lastBuildDate><atom:link href="https://n0trix.github.io/tags/heap/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chunkoverlap_poc</title>
+      <link>https://n0trix.github.io/posts/chunkoverlap_poc/</link>
+      <pubDate>Tue, 01 Dec 2020 07:04:09 +0800</pubDate>
+      
+      <guid>https://n0trix.github.io/posts/chunkoverlap_poc/</guid>
+      <description>chunk overlap poc overlap1
+#include &amp;lt;stdio.h&amp;gt;#include &amp;lt;stdlib.h&amp;gt;#include &amp;lt;unistd.h&amp;gt;#include &amp;lt;stdint.h&amp;gt; //chunk overlap int main() { setbuf(stdout,0); setbuf(stdin,0); intptr_t *p,*q,*r; malloc(0); p = malloc(0x88); q = malloc(0x88); malloc(0); free(p); sleep(0); *(p-1) = 0x121; r = malloc(0x110); sleep(0x100); return 0; } overlap2
+#include &amp;lt;stdio.h&amp;gt;#include &amp;lt;stdlib.h&amp;gt;#include &amp;lt;malloc.h&amp;gt;#include &amp;lt;stdint.h&amp;gt;#include &amp;lt;string.h&amp;gt; int main() { setbuf(stdin,0); setbuf(stdout,0); intptr_t *a,*b,*c,*d,*e; a = malloc(0); b = malloc(0x80); c = malloc(0x80); d = malloc(0x80); e = malloc(0x10);//gap to top  //assume off by one in a  free(d); //write b&amp;#39;s SIZE  *(a+3) = 0x121; //after free b, trigger forward consolidate  //b,c,d is merged into unsorted bin  //but c is in use  free(b); //now if malloc 0x1a0, glibc will return a big chunk  //contain b,c,d  intptr_t *big = malloc(0x1a0); puts(&amp;#34;overlapped.</description>
+    </item>
+    
+  </channel>
+</rss>
